@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">rvmncnn</string>
+    <string-array name="model_array">
+        <item>mobilenetv3</item>
+        <item>resnet50</item>
+    </string-array>
+    <string-array name="size_array">
+        <item>256</item>
+        <item>320</item>
+        <item>384</item>
+        <item>448</item>
+        <item>512</item>
+        <item>576</item>
+        <item>640</item>
+    </string-array>
+    <string-array name="intrainter_array">
+        <item>intra</item>
+        <item>inter</item>
+    </string-array>
+    <string-array name="postproc_array">
+        <item>deep</item>
+        <item>fast</item>
+        <item>seg</item>
+    </string-array>
+    <string-array name="cpugpu_array">
+        <item>CPU</item>
+        <item>GPU</item>
+        <item>turnip</item>
+    </string-array>
+</resources>
