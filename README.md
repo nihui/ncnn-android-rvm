@@ -32,6 +32,7 @@ https://github.com/nihui/opencv-mobile
 https://github.com/nihui/vulkan.turnip.so
 
 * Download mesa-turnip-android-XYZ.zip
+* Create directory **app/src/main/jniLibs/arm64-v8a** if not exists
 * Extract `vulkan.turnip.so` from mesa-turnip-android-XYZ.zip into **app/src/main/jniLibs/arm64-v8a**
 
 ### step4
