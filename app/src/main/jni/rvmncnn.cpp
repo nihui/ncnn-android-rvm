@@ -236,7 +236,7 @@ JNIEXPORT jboolean JNICALL Java_com_tencent_rvmncnn_RVMNcnn_loadModel(JNIEnv* en
 
             if (use_turnip)
             {
-                ncnn::create_gpu_instance("libvulkan_freedreno.so");
+                ncnn::create_gpu_instance("vulkan.turnip.so");
             }
             else if (use_gpu)
             {

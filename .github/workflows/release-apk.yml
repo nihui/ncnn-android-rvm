@@ -5,6 +5,7 @@ env:
   NCNN_VERSION: 20250428
   OPENCV_VERSION: 4.11.0
   OPENCV_MOBILE_TAG: v33
+  MESA_TURNIP_VERSION: 25.0.5
   BUILD_TOOLS_VERSION: 36.0.0
 
 jobs:
@@ -26,6 +27,11 @@ jobs:
       run: |
         wget -q https://github.com/nihui/opencv-mobile/releases/download/${OPENCV_MOBILE_TAG}/opencv-mobile-${OPENCV_VERSION}-android.zip
         unzip -q opencv-mobile-${OPENCV_VERSION}-android.zip -d app/src/main/jni
+
+    - name: vulkan-turnip-driver
+      run: |
+        wget -q https://github.com/nihui/vulkan.turnip.so/releases/download/${MESA_TURNIP_VERSION}/mesa-turnip-android-${MESA_TURNIP_VERSION}.zip
+        unzip -q mesa-turnip-android-${MESA_TURNIP_VERSION}.zip -d app/src/main/jniLibs/arm64-v8a
 
     - name: modify-jni-cmakelists
       run: |

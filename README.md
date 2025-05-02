@@ -10,6 +10,8 @@ https://github.com/Tencent/ncnn
 
 https://github.com/nihui/opencv-mobile
 
+https://github.com/nihui/vulkan.turnip.so  (mesa turnip driver)
+
 ## android apk file download
 https://github.com/nihui/ncnn-android-rvm/releases/latest
 
@@ -27,6 +29,12 @@ https://github.com/nihui/opencv-mobile
 * Extract opencv-mobile-XYZ-android.zip into **app/src/main/jni** and change the **OpenCV_DIR** path to yours in **app/src/main/jni/CMakeLists.txt**
 
 ### step3
+https://github.com/nihui/vulkan.turnip.so
+
+* Download mesa-turnip-android-XYZ.zip
+* Extract `vulkan.turnip.so` from mesa-turnip-android-XYZ.zip into **app/src/main/jniLibs/arm64-v8a**
+
+### step4
 * Open this project with Android Studio, build it and enjoy!
 
 ## some notes
