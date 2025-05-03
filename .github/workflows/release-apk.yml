@@ -2,7 +2,7 @@ name: release-apk
 on: workflow_dispatch
 
 env:
-  NCNN_VERSION: 20250428
+  NCNN_VERSION: 20250503
   OPENCV_VERSION: 4.11.0
   OPENCV_MOBILE_TAG: v33
   MESA_TURNIP_VERSION: 25.0.5
