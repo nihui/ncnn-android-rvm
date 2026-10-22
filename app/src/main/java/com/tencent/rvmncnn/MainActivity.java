@@ -37,7 +37,6 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback
     public static final int REQUEST_CAMERA = 100;
 
     private RVMNcnn rvmncnn = new RVMNcnn();
-    private int facing = 0;
 
     private Spinner spinnerModel;
     private Spinner spinnerSize;
@@ -71,13 +70,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback
             @Override
             public void onClick(View arg0) {
 
-                int new_facing = 1 - facing;
-
-                rvmncnn.closeCamera();
-
-                rvmncnn.openCamera(new_facing);
-
-                facing = new_facing;
+                rvmncnn.switchCamera();
             }
         });
 
@@ -172,6 +165,10 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback
         });
 
         reload();
+
+        // Request once per Activity, so denial cannot loop through onResume.
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, REQUEST_CAMERA);
     }
 
     private void reload()
@@ -197,6 +194,7 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder holder)
     {
+        rvmncnn.setOutputWindow(null);
     }
 
     @Override
@@ -204,19 +202,22 @@ public class MainActivity extends Activity implements SurfaceHolder.Callback
     {
         super.onResume();
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
-        {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, REQUEST_CAMERA);
-        }
+        rvmncnn.setCameraPermission(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
+        rvmncnn.setCameraActive(true);
+    }
 
-        rvmncnn.openCamera(facing);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA)
+            rvmncnn.setCameraPermission(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
 
     @Override
     public void onPause()
     {
+        rvmncnn.setCameraActive(false);
         super.onPause();
-
-        rvmncnn.closeCamera();
     }
 }
